@@ -3,5 +3,5 @@ This plugin enables to stick horizontal scrollbar of an item or region to the bo
 
 Plugin is based on Ben Alman's [jQuery Floating Scrollbar](https://gist.github.com/cowboy/846423).
 
-# Preview
+## Preview
 ![Interactive Report's Floating Scrollbar Preview](preview.gif)

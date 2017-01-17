@@ -1,0 +1,31 @@
+{
+  "name" : "Floating Scrollbar",
+  "version" : "1.0.0",
+  "description" : "This plugin enables to stick horizontal scrollbar of an item or a region to the bottom of a page.",
+  "keywords" : ["scrollbar"],
+  "homepage" : "https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar",
+  "bugs" : {
+    "url" : "https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar/issues"
+  },
+  "license" : "MIT",
+  "author" : {
+    "name" : "Sebastian Cichosz",
+    "url" : "https://github.com/foobarbaz-pl"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar.git"
+  },
+  "oracle" : {
+    "versions" : ["11.2.0.1", "12.1.0.1"],
+    "apex" : {
+      "versions" : ["5.0.0"],
+      "plugin" : {
+        "internalName" : "PL.SEBASTIANCICHOSZ.FLOATING-SCROLLBAR",
+        "type" : "dynamic action",
+        "demo" : "",
+        "previewImage" : "https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar/blob/master/preview.gif?raw=true"
+      }
+    }
+  }
+}
