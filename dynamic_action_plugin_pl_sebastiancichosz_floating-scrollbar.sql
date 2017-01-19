@@ -5,17 +5,17 @@ whenever sqlerror exit sql.sqlcode rollback
 -- ORACLE Application Express (APEX) export file
 --
 -- You should run the script connected to SQL*Plus as the Oracle user
--- APEX_050100 or as the owner (parsing schema) of the application.
+-- APEX_050000 or as the owner (parsing schema) of the application.
 --
 -- NOTE: Calls to apex_application_install override the defaults below.
 --
 --------------------------------------------------------------------------------
 begin
 wwv_flow_api.import_begin (
- p_version_yyyy_mm_dd=>'2016.08.24'
-,p_release=>'5.1.0.00.45'
-,p_default_workspace_id=>974798445828820675
-,p_default_application_id=>107153
+ p_version_yyyy_mm_dd=>'2013.01.01'
+,p_release=>'5.0.2.00.07'
+,p_default_workspace_id=>1674965477391250
+,p_default_application_id=>106
 ,p_default_owner=>'FOOBARBAZ'
 );
 end;
@@ -28,16 +28,16 @@ end;
 prompt --application/shared_components/plugins/dynamic_action/pl_sebastiancichosz_floating_scrollbar
 begin
 wwv_flow_api.create_plugin(
- p_id=>wwv_flow_api.id(1966405868597532659)
+ p_id=>wwv_flow_api.id(4846646374707188)
 ,p_plugin_type=>'DYNAMIC ACTION'
 ,p_name=>'PL.SEBASTIANCICHOSZ.FLOATING-SCROLLBAR'
 ,p_display_name=>'Floating Scrollbar'
 ,p_category=>'STYLE'
 ,p_supported_ui_types=>'DESKTOP'
-,p_javascript_file_urls=>wwv_flow_string.join(wwv_flow_t_varchar2(
+,p_javascript_file_urls=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
 '#PLUGIN_FILES#/js/jquery.ba-floatingscrollbar#MIN#.js',
 '#PLUGIN_FILES#/js/add-floating-scrollbar.js'))
-,p_plsql_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
+,p_plsql_code=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
 'function add_floating_scrollbar(p_dynamic_action in apex_plugin.t_dynamic_action,',
 '                                p_plugin         in apex_plugin.t_plugin)',
 '  return apex_plugin.t_dynamic_action_render_result is',
@@ -53,14 +53,36 @@ wwv_flow_api.create_plugin(
 '  return l_result;',
 'end add_floating_scrollbar;',
 ''))
-,p_api_version=>1
 ,p_render_function=>'add_floating_scrollbar'
 ,p_standard_attributes=>'REGION:REQUIRED'
 ,p_substitute_attributes=>true
 ,p_subscribe_plugin_settings=>true
 ,p_version_identifier=>'1.0.0'
 ,p_about_url=>'https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar'
-,p_files_version=>23
+,p_files_version=>4
+);
+end;
+/
+begin
+wwv_flow_api.g_varchar2_table := wwv_flow_api.empty_varchar2_table;
+wwv_flow_api.g_varchar2_table(1) := '66756E6374696F6E20616464466C6F6174696E675363726F6C6C6261722829207B0A2020746869732E6166666563746564456C656D656E74732E656163682866756E6374696F6E2829207B0A2020202076617220656C656D656E74203D20242874686973';
+wwv_flow_api.g_varchar2_table(2) := '292C207363726F6C6C626172456C656D656E743B0A0A2020202069662028656C656D656E742E697328276469762E742D4952522D726567696F6E272929207B0A2020202020202F2F20696E746572616374697665207265706F72740A2020202020207363';
+wwv_flow_api.g_varchar2_table(3) := '726F6C6C626172456C656D656E74203D20656C656D656E742E66696E6428277461626C652E612D4952522D7461626C653A6C61737427292E706172656E7428293B0A202020202020617065782E64656275672E696E666F2827416464696E6720666C6F61';
+wwv_flow_api.g_varchar2_table(4) := '74696E67207363726F6C6C62617220746F20495220726567696F6E2E272C207363726F6C6C626172456C656D656E74293B0A2020202020207363726F6C6C626172456C656D656E742E666C6F6174696E675363726F6C6C62617228293B0A202020207D20';
+wwv_flow_api.g_varchar2_table(5) := '656C7365207B0A2020202020207363726F6C6C626172456C656D656E74203D20656C656D656E742E66696E6428276469762E742D526567696F6E2D626F647927293B0A202020202020617065782E64656275672E696E666F2827416464696E6720666C6F';
+wwv_flow_api.g_varchar2_table(6) := '6174696E67207363726F6C6C62617220746F20726567696F6E2E272C207363726F6C6C626172456C656D656E74293B0A2020202020207363726F6C6C626172456C656D656E742E666C6F6174696E675363726F6C6C62617228293B0A202020207D0A2020';
+wwv_flow_api.g_varchar2_table(7) := '7D293B0A7D0A';
+null;
+end;
+/
+begin
+wwv_flow_api.create_plugin_file(
+ p_id=>wwv_flow_api.id(4846925798710428)
+,p_plugin_id=>wwv_flow_api.id(4846646374707188)
+,p_file_name=>'js/add-floating-scrollbar.js'
+,p_mime_type=>'text/javascript'
+,p_file_charset=>'utf-8'
+,p_file_content=>wwv_flow_api.varchar2_to_blob(wwv_flow_api.g_varchar2_table)
 );
 end;
 /
@@ -112,8 +134,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(1966407961483907579)
-,p_plugin_id=>wwv_flow_api.id(1966405868597532659)
+ p_id=>wwv_flow_api.id(4847358353711832)
+,p_plugin_id=>wwv_flow_api.id(4846646374707188)
 ,p_file_name=>'js/jquery.ba-floatingscrollbar.js'
 ,p_mime_type=>'text/javascript'
 ,p_file_charset=>'utf-8'
@@ -141,32 +163,9 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(1966408345007908651)
-,p_plugin_id=>wwv_flow_api.id(1966405868597532659)
+ p_id=>wwv_flow_api.id(4847778191712710)
+,p_plugin_id=>wwv_flow_api.id(4846646374707188)
 ,p_file_name=>'js/jquery.ba-floatingscrollbar.min.js'
-,p_mime_type=>'text/javascript'
-,p_file_charset=>'utf-8'
-,p_file_content=>wwv_flow_api.varchar2_to_blob(wwv_flow_api.g_varchar2_table)
-);
-end;
-/
-begin
-wwv_flow_api.g_varchar2_table := wwv_flow_api.empty_varchar2_table;
-wwv_flow_api.g_varchar2_table(1) := '66756E6374696F6E20616464466C6F6174696E675363726F6C6C6261722829207B0A2020746869732E6166666563746564456C656D656E74732E656163682866756E6374696F6E2829207B0A2020202076617220656C656D656E74203D20242874686973';
-wwv_flow_api.g_varchar2_table(2) := '292C207363726F6C6C626172456C656D656E743B0A0A2020202069662028656C656D656E742E697328276469762E742D4952522D726567696F6E272929207B0A2020202020202F2F20696E746572616374697665207265706F72740A2020202020207363';
-wwv_flow_api.g_varchar2_table(3) := '726F6C6C626172456C656D656E74203D20656C656D656E742E66696E6428277461626C652E612D4952522D7461626C653A6C61737427292E706172656E7428293B0A202020202020617065782E64656275672E696E666F2827416464696E6720666C6F61';
-wwv_flow_api.g_varchar2_table(4) := '74696E67207363726F6C6C62617220746F20495220726567696F6E2E272C207363726F6C6C626172456C656D656E74293B0A2020202020207363726F6C6C626172456C656D656E742E666C6F6174696E675363726F6C6C62617228293B0A202020207D20';
-wwv_flow_api.g_varchar2_table(5) := '656C7365207B0A2020202020207363726F6C6C626172456C656D656E74203D20656C656D656E742E66696E6428276469762E742D526567696F6E2D626F647927293B0A202020202020617065782E64656275672E696E666F2827416464696E6720666C6F';
-wwv_flow_api.g_varchar2_table(6) := '6174696E67207363726F6C6C62617220746F20726567696F6E2E272C207363726F6C6C626172456C656D656E74293B0A2020202020207363726F6C6C626172456C656D656E742E666C6F6174696E675363726F6C6C62617228293B0A202020207D0A2020';
-wwv_flow_api.g_varchar2_table(7) := '7D293B0A7D0A';
-null;
-end;
-/
-begin
-wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(2760168349633750948)
-,p_plugin_id=>wwv_flow_api.id(1966405868597532659)
-,p_file_name=>'js/add-floating-scrollbar.js'
 ,p_mime_type=>'text/javascript'
 ,p_file_charset=>'utf-8'
 ,p_file_content=>wwv_flow_api.varchar2_to_blob(wwv_flow_api.g_varchar2_table)
