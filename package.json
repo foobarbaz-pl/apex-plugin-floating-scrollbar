@@ -1,0 +1,29 @@
+{
+  "name": "apex-plugin-floating-scrollbar",
+  "version": "1.0.0",
+  "description": "Oracle Apex plugin to make region's horizontal toolbar floating at the bottom of a page.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar.git"
+  },
+  "keywords": [
+    "oracle-apex-plugin",
+    "region",
+    "scrollbar",
+    "floating"
+  ],
+  "author": "Sebastian Cichosz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar/issues"
+  },
+  "homepage": "https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-doctoc": "^0.1.4",
+    "gulp-markdown": "^1.2.0",
+    "gulp-zip": "^4.0.0"
+  }
+}

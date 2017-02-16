@@ -57,6 +57,12 @@ wwv_flow_api.create_plugin(
 ,p_standard_attributes=>'REGION:REQUIRED'
 ,p_substitute_attributes=>true
 ,p_subscribe_plugin_settings=>true
+,p_help_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'Usage',
+'1. Create dynamic action for an event of your choice (e.g. Page Load for static region, After Refresh for interactive region).',
+'2. Choose *Floating Scrollbar [Plug-In]* as a true action.',
+'3. Set your region in Affected Elements group.',
+'4. Remember to set Fire on Initialization if it''s After Refresh event.'))
 ,p_version_identifier=>'1.0.0'
 ,p_about_url=>'https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar'
 ,p_files_version=>4
