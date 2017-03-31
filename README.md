@@ -1,5 +1,5 @@
 # Oracle APEX Dynamic Action Plugin - Floating Scrollbar
-This plugin enables to stick horizontal scrollbar of a region to the bottom of a page.
+This plugin enables to glue a horizontal scrollbar of a region to the bottom of a page.
 In other words, whenever region is visible it's horizontal scrollbar is visible as well.
 
 Plugin is based on Ben Alman's [jQuery Floating Scrollbar](https://gist.github.com/cowboy/846423).
