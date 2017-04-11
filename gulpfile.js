@@ -4,15 +4,19 @@ var concat = require('gulp-concat');
 var toc = require('gulp-doctoc');
 var zip = require('gulp-zip');
 var clean = require('gulp-clean');
-var distDir = './dist';
 var pkg = require('./package.json');
 var uglify = require('gulp-uglify');
 var pump = require('pump');
 var rename = require("gulp-rename");
 
+var config = {
+  jsToMinify : 'server/js/add-floating-scrollbar.js',
+  distDir : './dist'
+};
+
 gulp.task('copy-files', ['clean'], function() {
   return gulp.src(['dynamic_action_plugin_pl_sebastiancichosz_floating-scrollbar.sql', 'preview.gif'])
-    .pipe(gulp.dest(distDir));
+    .pipe(gulp.dest(config.distDir));
 });
 
 gulp.task('readme-to-html', ['clean'], function() {
@@ -23,31 +27,31 @@ gulp.task('readme-to-html', ['clean'], function() {
       depth: 1
     }))
     .pipe(markdown())
-    .pipe(gulp.dest(distDir));
+    .pipe(gulp.dest(config.distDir));
 });
 
 gulp.task('zip', ['copy-files', 'readme-to-html'], function() {
-  return gulp.src(distDir + '/*')
+  return gulp.src(config.distDir + '/*')
     .pipe(zip(pkg.name + '-' + pkg.version + '.zip'))
-    .pipe(gulp.dest(distDir));
+    .pipe(gulp.dest(config.distDir));
 });
 
 gulp.task('clean-zipped', ['zip'], function() {
-  return gulp.src(distDir + '/!(*.zip)', {
+  return gulp.src(config.distDir + '/!(*.zip)', {
       read: false
     })
     .pipe(clean());
 });
 
 gulp.task('clean', function() {
-  return gulp.src(distDir + '/*', {
+  return gulp.src(config.distDir + '/*', {
       read: false
     })
     .pipe(clean());
 });
 
 gulp.task('minify', function(cb) {
-    gulp.src('server/js/add-floating-scrollbar.js')
+    gulp.src(config.jsToMinify)
       .pipe(uglify())
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest('server/js'));
@@ -58,4 +62,9 @@ gulp.task('minify', function(cb) {
 */
 });
 
-gulp.task('default', ['clean', 'copy-files', 'readme-to-html', 'zip', 'clean-zipped']);
+gulp.task('watch', function() {
+  gulp.watch(config.jsToMinify, ['minify']);
+});
+
+gulp.task('build', ['clean', 'copy-files', 'readme-to-html', 'zip', 'clean-zipped']);
+gulp.task('default', ['watch']);

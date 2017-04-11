@@ -1,13 +1,17 @@
 function addFloatingScrollbar() {
   this.affectedElements.each(function() {
-    var element = $(this),
-      scrollbarElement;
+    var element = $(this);
+    var scrollbarElement;
+    var irTable = element.find('table.a-IRR-table:last');
 
     // interactive report
-    if (element.is('div.t-IRR-region')) {
-      scrollbarElement = element.find('table.a-IRR-table:last').parent();
+    if (irTable) {
+
+      scrollbarElement = irTable.parent();
+
       apex.debug.info('Adding floating scrollbar to IR region.', scrollbarElement);
       scrollbarElement.floatingScrollbar(true);
+      // hook to before refresh to remove floating scrollbar
       element.one('apexbeforerefresh', {
         scrollbarElement: scrollbarElement
       }, function(e) {
