@@ -1,6 +1,6 @@
 {
   "name" : "Floating Scrollbar",
-  "version" : "1.0.1",
+  "version" : "1.0.2",
   "description" : "This plugin enables to glue a horizontal scrollbar of a region to the bottom of a page. In other words, whenever region is visible it's horizontal scrollbar is visible as well.",
   "keywords" : ["scrollbar"],
   "homepage" : "https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar",
