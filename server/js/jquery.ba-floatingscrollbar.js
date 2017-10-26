@@ -1,7 +1,7 @@
 /*!
  * jQuery Floating Scrollbar - v0.4 - 02/28/2011
  * http://benalman.com/
- * 
+ *
  * Copyright (c) 2011 "Cowboy" Ben Alman
  * Dual licensed under the MIT and GPL licenses.
  * http://benalman.com/about/license/
@@ -13,7 +13,12 @@
       html = $('html'),
 
       // All the elements being monitored.
-      elems = $([]),
+      //elems = $([]),
+      elems = [],
+
+      // Options for monitored elements.
+      //opts = $([]),
+      opts = [],
 
       // The current element.
       current,
@@ -25,16 +30,18 @@
       scroller = $('<div id="floating-scrollbar"><div/></div>'),
       scrollerInner = scroller.children();
 
+  scrollerStdCSS = {
+    position: 'fixed',
+    bottom: "0px",
+    height: '30px',
+    overflowX: 'auto',
+    overflowY: 'hidden'
+  };
+
   // Initialize the floating scrollbar.
   scroller
     .hide()
-    .css({
-      position: 'fixed',
-      bottom: 0,
-      height: '30px',
-      overflowX: 'auto',
-      overflowY: 'hidden'
-    })
+    .css(scrollerStdCSS)
     .scroll(function() {
       // If there's a current element, set its scroll appropriately.
       current && current.scrollLeft(scroller.scrollLeft())
@@ -47,25 +54,34 @@
 
   // Call on elements to monitor their position and scrollness. Pass `false` to
   // stop monitoring those elements.
-  $.fn.floatingScrollbar = function( state ) {
+  $.fn.floatingScrollbar = function( state, options ) {
     if ( state === false ) {
       // Remove these elements from the list.
-      elems = elems.not(this);
+      var idx = elems.indexOf(this);
+      if (idx > -1) {
+        opts.splice(idx, 1);
+        elems.splice(idx, 1);
+      }
+      //opts = opts.not(opts[elems.index(this)]);
+      //elems = elems.not(this);
+
       // Stop monitoring elements for scroll.
       this.unbind('scroll', scrollCurrent);
       if ( !elems.length ) {
         // No elements remain, so detach scroller and unbind events.
-        scroller.detach();
+        //scroller.detach();
         win.unbind('resize scroll', update);
       }
     } else if ( this.length ) {
       // Don't assume the set is non-empty!
       if ( !elems.length ) {
+        $(scroller).appendTo(document.body);
         // Adding elements for the first time, so bind events.
         win.resize(update).scroll(update);
       }
       // Add these elements to the list.
-      elems = elems.add(this);
+      elems.push(this);
+      opts.push(options ? options : {"css" : scrollerStdCSS});
     }
     // Update.
     update();
@@ -95,15 +111,18 @@
 
     // Find the first element whose content is visible, but whose bottom is
     // below the viewport.
-    elems.each(function(){
-      var elem = $(this),
+    elems.forEach(function(e, i){
+    //elems.each(function(i, e){
+      //var elem = $(this),
+      var elem = $(e),
           top = elem.offset().top,
           bottom = top + elem.height(),
-          viewportBottom = win.scrollTop() + win.height(),
+          viewportBottom = win.scrollTop() + win.height() - opts[i].css.bottom,
           topOffset = 30;
 
       if ( top + topOffset < viewportBottom && bottom > viewportBottom ) {
         current = elem;
+        scroller.css(opts[i].css);
         return false;
       }
     });
@@ -128,7 +147,7 @@
     // Sync floating scrollbar if element content is scrolled.
     if ( !previous || previous[0] !== current[0] ) {
       previous && previous.unbind('scroll', scrollCurrent);
-      current.scroll(scrollCurrent).after(scroller);
+      current.scroll(scrollCurrent);//.after(scroller);
     }
 
     // Adjust the floating scrollbar as-necessary.

@@ -10,7 +10,7 @@ var pump = require('pump');
 var rename = require("gulp-rename");
 
 var config = {
-  jsToMinify : 'server/js/add-floating-scrollbar.js',
+  jsToMinify : ['server/js/add-floating-scrollbar.js', 'server/js/jquery.ba-floatingscrollbar.js'],
   distDir : './dist'
 };
 
@@ -66,5 +66,5 @@ gulp.task('watch', function() {
   gulp.watch(config.jsToMinify, ['minify']);
 });
 
-gulp.task('build', ['clean', 'copy-files', 'readme-to-html', 'zip', 'clean-zipped']);
+gulp.task('build', ['clean', 'minify', 'copy-files', 'readme-to-html', 'zip', 'clean-zipped']);
 gulp.task('default', ['watch']);

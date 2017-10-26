@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.0]
+### Added
+- Support for interactive grid.
+
+### Fixed
+- Removed additional slash from JavaScript file URLs.
+- Scrollbar stops working after refreshing interactive report.
+
 ## [1.0.2] - 2017-04-17
 ### Fixed
 - Incorrect function name in minified version of add-floating-scrollbar.js file.
@@ -21,5 +29,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Dynamic action plugin based on Ben Alman's [jQuery Floating Scrollbar](https://gist.github.com/cowboy/846423).
 
 
+[1.1.0]: https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/foobarbaz-pl/apex-plugin-floating-scrollbar/compare/v1.0.0...v1.0.1
